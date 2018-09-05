@@ -1,0 +1,34 @@
+﻿@model ExpenditureRequest
+@{
+    ViewData["Title"] = "Edit expenditure";
+    Layout = "_Layout";
+}
+<form method="post" asp-action="Edit" class="m-5 p-1">
+    <div class="form-group">
+        <label asp-for="PurchasedItem">Purchased item:</label>
+        <div><span asp-validation-for="PurchasedItem" class="text-danger"></span></div>
+        <input class="form-control form-control-sm" asp-for="PurchasedItem" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Price">Price:</label>
+        <div><span asp-validation-for="Price" class="text-danger"></span></div>
+        <input class="form-control form-control-sm" asp-for="Price" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Category">Category:</label>
+        <div><span asp-validation-for="Category" class="text-danger"></span></div>
+        <input class="form-control form-control-sm" asp-for="Category" />
+    </div>
+    <div class="form-group">
+        <label asp-for="MonthOfPurchase">Month of purchase:</label>
+        <div><span asp-validation-for="MonthOfPurchase" class="text-danger"></span></div>
+        <input class="form-control form-control-sm" asp-for="MonthOfPurchase" />
+    </div>
+    <div class="form-group">
+        <label asp-for="YearOfPurchase">Year of purchase:</label>
+        <div><span asp-validation-for="YearOfPurchase" class="text-danger"></span></div>
+        <input class="form-control form-control-sm" asp-for="YearOfPurchase" />
+    </div>
+    <button type="submit" class="btn btn-primary">Save changes</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancel</a>
+</form>

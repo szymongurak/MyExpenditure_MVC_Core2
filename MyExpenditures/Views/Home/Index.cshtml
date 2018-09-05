@@ -1,0 +1,45 @@
+﻿@model List<ExpenditureResponse>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+<div class="p-2 m-2">
+    <a asp-action="Create" class="btn btn-success">Add new expenditure</a>
+</div>
+
+<div class="mx-auto p-1">
+    <div class="p-3">
+        <table class="table table-sm table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Purchased Item</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>MonthOfPurchase</th>
+                    <th>YearOfPurchase</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var expenditure in Model)
+                {
+                <tr>
+                    <td>@expenditure.PurchasedItem</td>
+                    <td>@expenditure.Price [PLN]</td>
+                    <td>@expenditure.Category</td>
+                    <td>@expenditure.MonthOfPurchase</td>
+                    <td>@expenditure.YearOfPurchase</td>
+                    <th>
+                        <form asp-action="Delete" class="ml-1">
+                            <a asp-action="Edit" class="btn btn-warning btn-sm"
+                               asp-route-id="@expenditure.Id">Edit</a>
+                            <input type="hidden" name="id" value="@expenditure.Id" />
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </th>
+                </tr>}
+            </tbody>
+        </table>
+    </div>
+</div>
