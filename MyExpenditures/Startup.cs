@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using AutoMapper;
 using System.Reflection;
+using FluentValidation.AspNetCore;
 
 namespace MyExpenditures
 {
@@ -25,6 +26,9 @@ namespace MyExpenditures
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddMvc()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
 
             services.AddScoped<IExpendituresService, ExpendituresService>();
 
