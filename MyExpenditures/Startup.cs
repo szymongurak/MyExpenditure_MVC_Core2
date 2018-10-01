@@ -13,6 +13,9 @@ using Microsoft.Extensions.Configuration;
 using AutoMapper;
 using System.Reflection;
 using FluentValidation.AspNetCore;
+using Microsoft.Extensions.Logging;
+using NLog.Extensions.Logging;
+using NLog.Web;
 
 namespace MyExpenditures
 {
@@ -41,8 +44,13 @@ namespace MyExpenditures
                     Configuration["Data:MyExpenditures:ConnectionString"]));
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddNLog();
+            app.AddNLogWeb();
+            env.ConfigureNLog("nlog.config");
+
+
             app.UseStatusCodePages();
             app.UseDeveloperExceptionPage();
             app.UseStaticFiles();

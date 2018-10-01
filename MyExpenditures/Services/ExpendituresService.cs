@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using MyExpenditures.DbModels;
 using MyExpenditures.Services;
-
+using NLog;
 
 namespace MyExpenditures.Services
 {
     public class ExpendituresService : IExpendituresService
     {
         private readonly ExpenditureDbContext _expenditureDbContext;
+
+        private readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public ExpendituresService(ExpenditureDbContext expenditureDbContext)
         {
@@ -29,6 +32,7 @@ namespace MyExpenditures.Services
 
         public void AddNewExpenditure(Expenditure expenditure)
         {
+            Logger.Warn("Added new expenditure");
             _expenditureDbContext.Expenditures.Add(expenditure);
             _expenditureDbContext.SaveChanges();
         }
